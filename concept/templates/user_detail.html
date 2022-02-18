@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang='ja'>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>List</title>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+       
+        <tr>
+          
+          
+         
+          
+        </tr>
+        <tr>
+            <th>名:</th>
+            <td>{{ user.username }}</td><br>
+        </tr>
+        <tr>
+          <th>お気に入り作品:</th>
+          {% for favorite_place in user.favorite_place.all %}
+          <td><a href="{% url 'artdetail' pk=favorite_place.id %}">{{ favorite_place.artname }}</a></td><br>
+          <form action="{% url 'remove' pk=favorite_place.id %}" method="post">
+          <button type="submit" name="button">お気に入り削除</button>
+          {% csrf_token %}
+          {% endfor %}
+        </tr>
+        <tr>
+          <th>お気に入りアーティスト:</th>
+          {% for favorite_people in user.favorite_people.all %}
+          <td><a href="{% url 'artistdetail' pk=favorite_people.id %}">{{ favorite_people.artistname }}</a></td><br>
+          {% endfor %}
+        </tr>
+
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'delete' user.username %}">退会</a></li>
+          <li><a href="{% url 'change'%}">会員情報変更</a></li>
+          <li><a href="{% url 'logout'%}">ログアウトする</a></li>
+        {% endif %}
+
+        
+    </tbody>
+  </table>
+</body>
+</html>

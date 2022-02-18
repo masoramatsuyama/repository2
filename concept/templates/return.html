@@ -1,0 +1,40 @@
+<tr>
+  <th></th>
+  <td>{{ artist.artistname }}</td><br>
+</tr>
+{% for return in returnlist %}
+  {% if forloop.first %}
+   <p>{{ return.artist.artistname }}のリターン情報</p>
+  {% endif %}
+   <tr>
+   <th>リターン名:</th>
+   <td>{{ return.returnname }}</td><br>
+   </tr> 
+   <tr>
+   <th>対象ランク:</th>
+   <td>{{ return.lank }}</td><br>
+   </tr> 
+   <tr>
+    <th>会員費:</th>
+    <td>{{ return.lank.price }}</td><br>
+    </tr> 
+   <tr>
+   <th>内容:</th>
+   <td>{{ return.returnex }}</td><br>
+   </tr>
+   <tr>
+   <th>id:</th>
+   <td>{{ return.id }}</td><br>
+   </tr>
+
+   <br>
+    <form action="{% url 'create-checkout-session' %}" method="POST">
+     {% csrf_token %}
+     {% comment %} ユーザ情報や住所の収集なども行えると良い {% endcomment %}
+      <p>
+        <input type="radio" name="return" value="{{ return.id }}" id="id_return_{{ return.id }}">
+        <label for="id_return_{{ return.id }}">{{ return.returnname }}</label>
+      </p>
+     <button type="submit">決済に進む</button>
+    </form>  
+{% endfor %}

@@ -1,0 +1,20 @@
+<h1>検索結果</h1>
+<br>
+{{ message }}
+<ul>
+  <li>
+      作品名
+      製作日
+      アーティスト
+  </li>
+</ul>
+{% for art in art %}
+    <ul>
+        <li>
+            {{ art.artname }}
+            {{ art.artbirth }}
+            {{ art.artist }}
+            作品詳細
+        </li>
+    </ul>
+{% endfor %}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang='ja'>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>List</title>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+       
+        <tr>
+          
+          <td><img src="{{ artist.artistimage.url }}" width=300></td>
+         
+          
+        </tr>
+        <tr>
+            <th>作家名:</th>
+            <td>{{ artist.artistname }}</td><br>
+        </tr>
+        
+        <tr>
+            <th>出身:</th>
+            <td>{{ artist.fromm }}</td><br>
+        </tr>
+        <tr>
+          <th>動画:</th>
+          
+            <video  src="{{ artist.video.url }}" type="video/mp4" controls>
+        </tr> 
+        <form action="{% url 'followpeople' artist.pk %}" method="post">
+          <button type="submit" name="button">お気に入り追加</button>
+          {% csrf_token %}
+        </form>
+          
+      </tr>
+      <td><button><a href="{% url 'return' artist.pk %}"> 支援</a></button></td>
+        
+    </tbody>
+  </table>
+</body>
+</html>

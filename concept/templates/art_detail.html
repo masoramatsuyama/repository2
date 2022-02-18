@@ -1,0 +1,38 @@
+<img src="{{ art.artimage.url }}" width=300><br>
+<tr>
+    <th>作品名:</th>
+    <td>{{ art.artname }}</td><br>
+</tr>
+<tr>
+    <th>作家名:</th>
+    <td><a href="{% url 'artistdetail' art.pk %}">{{ art.artist }}</a></td><br>
+</tr>
+<tr>
+    <th>作成日:</th>
+    <td>{{ art.artbirth }}</td><br>
+    <button>支援</button>
+</tr>
+<th>ARTオブジェクト:</th>
+    <td>{{ art }}</td><br>
+    <td>{{ctx}}</td><br>
+
+    {% if art.artname in user.favorite_place %}
+        <th>できない</th>
+    {% endif %}
+
+
+ 
+ <form action="{% url 'follow' art.pk %}" method="post">
+    <button type="submit" name="button">お気に入り追加</button>
+    {% csrf_token %}
+ </form>
+
+
+
+
+
+
+
+
+
+

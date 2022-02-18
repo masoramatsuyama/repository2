@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang='ja'>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>List</title>
+</head>
+<body>
+  {% if user.is_authenticated %}
+  <p>{{ user.username }}でログイン中</p>
+  <p><a href="{% url 'userdetail' user.pk %}">マイページ</a></p>
+  {% else %}
+  <p>ログインしていません</p>
+  {% endif %}
+
+  {% block titele %}ログイン{% endblock %}
+  <div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p><a href="{% url 'password_reset' %}">パスワードを忘れた</a></p>
+        <button type="submit" class="btn btn-primary">ログイン</button>
+    </form>
+  </div>
+  
+</body>
+</html>

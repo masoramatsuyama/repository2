@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+ <header>
+   <title>問い合わせページ</title>
+ </header>
+ <body>
+   <form method="post">
+     {% csrf_token %}
+     {{ form.non_field_errors }}
+     
+     {% for field in form %}
+       <div>
+         <label for="{{ field.id_for_label }}">
+           {{ field.label_tag }}
+         </label>
+         <div>
+           {{ field }}
+           {{ field.errors }}
+         </div>
+       </div>
+     {% endfor %}
+     <button type="submit">送信</button> 
+   </form>
+ <body>
+</html>

@@ -1,0 +1,12 @@
+
+<div class="header">ユーザー情報の変更</div>
+                <form class="ui form" action="" method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button class="ui orange button" type="submit">確認</button>
+                </form>
+            
+        
+        <a href="{% url 'userdetail' user.pk%}">プロフィールに戻る</a>
+      
+
